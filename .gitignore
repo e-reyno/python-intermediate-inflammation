@@ -16,3 +16,9 @@
 # Virtual Environments
 venv/
 .venv/
+
+# jupyter notebooks
+*.ipynb
+
+#egg
+inflammation_analysis.egg-info
