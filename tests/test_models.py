@@ -4,51 +4,48 @@ import numpy as np
 import numpy.testing as npt
 import pytest
 
-
-def test_daily_mean_zeros():
+@pytest.mark.parametrize(
+    "test, expected_mean",
+    [
+        ([[0, 0], [0, 0], [0, 0]], [0,0]),
+        ([[1, 2], [3, 4], [5, 6]], [3,4]),
+    ]
+)
+def test_daily_mean(test, expected_mean):
     """Test that mean function works for an array of zeros."""
     from inflammation.models import daily_mean
 
-    test_input = np.array([[0, 0],
-                           [0, 0],
-                           [0, 0]])
-    test_result = np.array([0, 0])
 
     # Need to use Numpy testing functions to compare arrays
-    npt.assert_array_equal(daily_mean(test_input), test_result)
+    npt.assert_array_equal(daily_mean(test), expected_mean)
 
-
-def test_daily_mean_integers():
-    """Test that mean function works for an array of positive integers."""
-    from inflammation.models import daily_mean
-
-    test_input = np.array([[1, 2],
-                           [3, 4],
-                           [5, 6]])
-    test_result = np.array([3, 4])
-
-    # Need to use Numpy testing functions to compare arrays
-    npt.assert_array_equal(daily_mean(test_input), test_result)
-
-def test_daily_max_integers():
+@pytest.mark.parametrize(
+    "test, expected_max",
+    [
+        ([[0, 0], [0, 0], [0, 0]], [0,0]),
+        ([[1, 2], [3, 4], [5, 6]], [5,6]),
+    ]
+)
+def test_daily_max_integers(test, expected_max):
     
     from inflammation.models import daily_max
-    
-    test_input = np.array([[1, 2],
-                           [3, 4]])
-    test_result = np.array([3, 4])
-    npt.assert_array_equal(daily_max(test_input), test_result)
-    
-def test_daily_min_integers():
+
+    npt.assert_array_equal(daily_max(test), expected_max)
+
+@pytest.mark.parametrize(
+    "test, expected_min",
+    [
+        ([[0, 0], [0, 0], [0, 0]], [0,0]),
+        ([[1, 2], [3, 4], [5, 6]], [1,2]),
+    ]
+)
+def test_daily_min(test, expected_min):
     """test integer passing for daily min function
     """
     from inflammation.models import daily_min
     
-    test_input = np.array([[1, 2],
-                           [3, 4]])
-    test_result = np.array([1,2])
-    npt.assert_array_equal(daily_min(test_input), test_result)
-    
+    npt.assert_array_equal(daily_min(test), expected_min)
+
 def test_daily_min_string():
     """test for type error when pass a string to daily min func.
     """
