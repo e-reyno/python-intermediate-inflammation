@@ -22,3 +22,6 @@ venv/
 
 #egg
 inflammation_analysis.egg-info
+
+#example yml
+example_yml.yml
