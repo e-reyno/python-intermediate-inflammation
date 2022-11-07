@@ -54,3 +54,9 @@ def patient_normalise(data):
     normalised[np.isnan(normalised)] = 0
     normalised[normalised < 0] = 0
     return normalised
+
+
+def daily_standard_deviation(data):
+    """Calculate the patient standard deviation  of a 2d inflammation data array
+    """
+    return np.std(data, axis=0)
