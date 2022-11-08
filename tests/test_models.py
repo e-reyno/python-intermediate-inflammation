@@ -87,9 +87,6 @@ def test_patient_normalise(test, expected, expect_raises):
 
 def test_patient_name():
 
-    from inflammation.models import Patient, Person
+    from inflammation.models import Patient
     test = Patient("bob")
-    print(test.name)
-    npt.assert_equal(test.name, "bab")
-    
-test_patient_name()
+    npt.assert_equal(test.name, "bob")
