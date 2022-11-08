@@ -63,11 +63,18 @@ class Patient(Person):
 
 
 class Doctor(Person):
-    def __init__(self, name, patients):
-        self.name = name
+    def __init__(self, name: str, patients: Patient=[]):
+        super().__init__(name)
         self.patients = patients
     def __str__(self):
         return self.name
+    def patient_names(self):
+        return [p.name for p in self]
+    def add_patient(self, patient: Patient):
+        new_patient = Patient(patient)
+        self.patients.append(new_patient)
+        return new_patient
+
 
 def load_csv(filename):
     """Load a Numpy array from a CSV
@@ -119,4 +126,3 @@ def daily_standard_deviation(data):
     """Calculate the patient standard deviation  of a 2d inflammation data array
     """
     return np.std(data, axis=0)
-
